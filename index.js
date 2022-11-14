@@ -1,55 +1,102 @@
-// document.querySelector("button").addEventListener("click",handleclick);
+// detecting button press
 
-// function handleclick()
-// {
-//     alert("i got click");
-// }
-// Anormous function
-// var numberOfDrum = document.querySelectorAll(".drum").length;
-for (var i = 0; i < document.querySelectorAll(".drum").length; i++) {
-  document.querySelectorAll("button")[i].addEventListener("click", function () {
-    var buttoninnerhtml = this.innerHTML;
-    makesound(buttoninnerhtml);
+var numberOfDrumButton = document.querySelectorAll(".drum").length;
+
+for (var i = 0; i < numberOfDrumButton; i++) {
+  document.querySelectorAll(".drum")[i].addEventListener("click", function () {
+    var buttonInnerHtml = this.innerHTML;
+    makeSound(buttonInnerHtml);
+    buttonAnimation(buttonInnerHtml);
   });
 }
-document.addEventListener("keypress" , function(event)
-{
-  makesound(event.key); 
+
+// detecting keyboard press
+document.addEventListener("keypress", function (event) {
+  makeSound(event.key);
+  buttonAnimation(event.key);
 });
 
-function makesound(key)
-{
+function makeSound(key) {
   switch (key) {
     case "w":
-      var tom1 = new Audio('tom-1.mp3');
-      tom1.play();
+      var audio = new Audio("sounds/crash.mp3");
+      audio.play();
       break;
+
     case "a":
-      var tom2 = new Audio('tom-2.mp3');
-      tom2.play();
+      var audio = new Audio("sounds/kick-bass.mp3");
+      audio.play();
       break;
+
     case "s":
-      var tom3 = new Audio('tom-3.mp3');
-      tom3.play();
+      var audio = new Audio("sounds/snare.mp3");
+      audio.play();
       break;
+
     case "d":
-      var tom4 = new Audio('tom-4.mp3');
-      tom4.play();
+      var audio = new Audio("sounds/tom-1.mp3");
+      audio.play();
       break;
+
     case "j":
-    var snare = new Audio('snare.mp3');
-    snare.play();
-    break;
+      var audio = new Audio("sounds/tom-2.mp3");
+      audio.play();
+      break;
+
     case "k":
-      var kickbass = new Audio('kick-bass.mp3');
-      kickbass.play();
+      var audio = new Audio("sounds/tom-3.mp3");
+      audio.play();
       break;
+
     case "l":
-      var crash = new Audio('crash.mp3');
-      crash .play();
+      var audio = new Audio("sounds/tom-4.mp3");
+      audio.play();
       break;
-    
+
+    case "W":
+      var audio = new Audio("sounds/crash.mp3");
+      audio.play();
+      break;
+
+    case "A":
+      var audio = new Audio("sounds/kick-bass.mp3");
+      audio.play();
+      break;
+
+    case "S":
+      var audio = new Audio("sounds/snare.mp3");
+      audio.play();
+      break;
+
+    case "D":
+      var audio = new Audio("sounds/tom-1.mp3");
+      audio.play();
+      break;
+
+    case "J":
+      var audio = new Audio("sounds/tom-2.mp3");
+      audio.play();
+      break;
+
+    case "K":
+      var audio = new Audio("sounds/tom-3.mp3");
+      audio.play();
+      break;
+
+    case "L":
+      var audio = new Audio("sounds/tom-4.mp3");
+      audio.play();
+      break;
+
     default:
-      break;
+      console.log(buttonInnerHtml);
   }
+}
+
+function buttonAnimation(currentKey) {
+  var activeButton = document.querySelector("." + currentKey);
+  activeButton.classList.add("pressed");
+  setTimeout(function () {
+    activeButton.classList.remove("pressed");
+  }, 100);
 }
